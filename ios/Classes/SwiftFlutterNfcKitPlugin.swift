@@ -287,8 +287,7 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
                 result(FlutterError(code: "406", message: "No tag polled", details: nil))
             }
         } else if call.method == "finish" {
-            self.result?(FlutterError(code: "406", message: "Session not active", details: nil))
-            self.result = nil
+
 
             if let session = session {
                 let arguments = call.arguments as! [String: Any?]
@@ -307,7 +306,9 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
             }
 
             tag = nil
-            result(nil)
+            self.result?(FlutterError(code: "406", message: "Session not active", details: nil))
+            self.result = nil
+
         } else if call.method == "setIosAlertMessage" {
             if let session = session {
                 if let alertMessage = call.arguments as? String {
