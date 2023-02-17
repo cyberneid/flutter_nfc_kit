@@ -305,11 +305,17 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
                     }
                     currentSession!.invalidate()
                 }
-            }
 
-            tag = nil
-            self.result?(FlutterError(code: "406", message: "Session not active", details: nil))
-            self.result = nil
+                tag = nil
+                result(nil)
+                self.result = nil
+            }
+            else
+            {
+                tag = nil
+                result(FlutterError(code: "406", message: "Session not active", details: nil))
+                self.result = nil
+            }
 
         } else if call.method == "setIosAlertMessage" {
             if let session = session {
