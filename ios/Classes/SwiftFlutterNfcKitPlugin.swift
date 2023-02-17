@@ -289,13 +289,13 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
         } else if call.method == "finish" {
 
 
-            if let session = session {
+            if let session = self.session {
                 let arguments = call.arguments as! [String: Any?]
                 let alertMessage = arguments["iosAlertMessage"] as? String
                 let errorMessage = arguments["iosErrorMessage"] as? String
 
-                var currentSession = session
-                session = nil
+                var currentSession = self.session
+                self.session = nil
 
                 if let errorMessage = errorMessage {
                     currentSession.invalidate(errorMessage: errorMessage)
