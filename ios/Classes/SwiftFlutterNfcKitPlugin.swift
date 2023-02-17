@@ -298,12 +298,12 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
                 self.session = nil
 
                 if let errorMessage = errorMessage {
-                    currentSession.invalidate(errorMessage: errorMessage)
+                    currentSession!.invalidate(errorMessage: errorMessage)
                 } else {
                     if let alertMessage = alertMessage {
-                        currentSession.alertMessage = alertMessage
+                        currentSession!.alertMessage = alertMessage
                     }
-                    currentSession.invalidate()
+                    currentSession!.invalidate()
                 }
             }
 
