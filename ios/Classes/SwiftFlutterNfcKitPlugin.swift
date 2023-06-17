@@ -77,6 +77,13 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
                 self.result = result
                 session?.begin()
             }
+        } else if call.method == "restartPolling" {
+            if session != nil {
+                session?.restartPolling()
+                self.result = result
+            } else {
+                result(FlutterError(code: "406", message: "No active session", details: nil))
+            }                
         } else if call.method == "transceive" {
             if tag != nil {
                 let req = (call.arguments as? [String: Any?])?["data"]

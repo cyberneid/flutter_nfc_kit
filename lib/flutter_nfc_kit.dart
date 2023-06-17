@@ -231,6 +231,18 @@ class FlutterNfcKit {
     return NFCTag.fromJson(jsonDecode(data));
   }
 
+
+  /// Try to restart polling for a NFC tag from reader.
+  ///
+  /// If tag is successfully polled, a session is started.
+
+  static Future<NFCTag> restartPolling({
+  }) async {
+    // use a bitmask for compact representation
+    final String data = await _channel.invokeMethod('restartPolling');
+    return NFCTag.fromJson(jsonDecode(data));
+  }
+
   /// Transceive data with the card / tag in the format of APDU (iso7816) or raw commands (other technologies).
   /// The [capdu] can be either of type Uint8List or hex string.
   /// Return value will be in the same type of [capdu].
