@@ -236,8 +236,7 @@ class FlutterNfcKit {
   ///
   /// If tag is successfully polled, a session is started.
 
-  static Future<NFCTag> restartPolling({
-  }) async {
+  static Future<NFCTag> restartPolling() async {
     // use a bitmask for compact representation
     final String data = await _channel.invokeMethod('restartPolling');
     return NFCTag.fromJson(jsonDecode(data));
