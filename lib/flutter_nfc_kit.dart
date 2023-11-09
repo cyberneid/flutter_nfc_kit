@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' show Platform;
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:ndef/ndef.dart' as ndef;
 import 'package:ndef/ndef.dart' show TypeNameFormat; // for generated file
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ndef/utilities.dart';
 
 part 'flutter_nfc_kit.g.dart';
 
@@ -230,7 +230,6 @@ class FlutterNfcKit {
     });
     return NFCTag.fromJson(jsonDecode(data));
   }
-
 
   /// Try to restart polling for a NFC tag from reader.
   ///
