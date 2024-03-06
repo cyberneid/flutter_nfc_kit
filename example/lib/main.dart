@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:logging/logging.dart';
 import 'package:ndef/ndef.dart' as ndef;
+import 'package:ndef/utilities.dart';
 
 import 'record-setting/raw_record_setting.dart';
 import 'record-setting/text_record_setting.dart';
@@ -114,7 +115,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                         });
                       } else if (tag.type == NFCTagType.iso18092) {
                         String result1 =
-                          await FlutterNfcKit.transceive("060080080100");
+                            await FlutterNfcKit.transceive("060080080100");
                         setState(() {
                           _result = '1: $result1\n';
                         });

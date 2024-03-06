@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' show Platform;
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:ndef/ndef.dart' as ndef;
 import 'package:ndef/ndef.dart' show TypeNameFormat; // for generated file
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ndef/utilities.dart';
 
 part 'flutter_nfc_kit.g.dart';
 
@@ -228,6 +228,16 @@ class FlutterNfcKit {
       'technologies': technologies,
       'probeWebUSBMagic': probeWebUSBMagic,
     });
+    return NFCTag.fromJson(jsonDecode(data));
+  }
+
+  /// Try to restart polling for a NFC tag from reader.
+  ///
+  /// If tag is successfully polled, a session is started.
+
+  static Future<NFCTag> restartPolling() async {
+    // use a bitmask for compact representation
+    final String data = await _channel.invokeMethod('restartPolling');
     return NFCTag.fromJson(jsonDecode(data));
   }
 

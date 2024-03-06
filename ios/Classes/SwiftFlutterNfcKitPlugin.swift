@@ -77,6 +77,13 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
                 self.result = result
                 session?.begin()
             }
+        } else if call.method == "restartPolling" {
+            if session != nil {
+                session?.restartPolling()
+                self.result = result
+            } else {
+                result(FlutterError(code: "406", message: "No active session", details: nil))
+            }                
         } else if call.method == "transceive" {
             if tag != nil {
                 let req = (call.arguments as? [String: Any?])?["data"]
@@ -288,8 +295,12 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
             }
         } else if call.method == "finish" {
 
+            print("NFC finish")
 
             if let session = self.session {
+
+                print("session ok")
+
                 let arguments = call.arguments as! [String: Any?]
                 let alertMessage = arguments["iosAlertMessage"] as? String
                 let errorMessage = arguments["iosErrorMessage"] as? String
@@ -298,12 +309,19 @@ public class SwiftFlutterNfcKitPlugin: NSObject, FlutterPlugin, NFCTagReaderSess
                 self.session = nil
 
                 if let errorMessage = errorMessage {
+                    print(errorMessage)
+                    print("invalidate")
                     currentSession!.invalidate(errorMessage: errorMessage)
+                    print("invalidated")
                 } else {
                     if let alertMessage = alertMessage {
+                        print(alertMessage)
                         currentSession!.alertMessage = alertMessage
                     }
+
+                    print("invalidate")
                     currentSession!.invalidate()
+                    print("invalidated")
                 }
 
                 tag = nil
