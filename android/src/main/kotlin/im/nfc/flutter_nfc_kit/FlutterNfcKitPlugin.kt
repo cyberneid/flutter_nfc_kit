@@ -125,7 +125,7 @@ class FlutterNfcKitPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                         if (ndefTech != null && ndefTech.isConnected) {
                             ndefTech.close()
                         }
-                    } catch (ex: IOException) {
+                    } catch (ex: Throwable) {
                         Log.e(TAG, "Close tag error", ex)
                     }
                     if (activity != null) {
