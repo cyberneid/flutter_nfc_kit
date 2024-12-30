@@ -123,3 +123,12 @@
 ## 3.3.1
 
 * Downgrade dependency `js` to 0.6.3 to maintain backward compatibility with Flutter 2 (#74)
+
+
+## 3.3.1
+
+* Downgrade dependency `js` to 0.6.3 to maintain backward compatibility with Flutter 2 (#74)
+
+## 3.4.3
+
+* Added namespace into build.gradle for new agp version
