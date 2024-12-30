@@ -13,6 +13,7 @@ buildscript {
     }
 }
 
+
 rootProject.allprojects {
     repositories {
         google()
@@ -26,6 +27,16 @@ apply plugin: 'kotlin-android'
 android {
     namespace "im.nfc.flutter_nfc_kit"
     compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'

@@ -132,3 +132,7 @@
 ## 3.4.3
 
 * Added namespace into build.gradle for new agp version
+
+## 3.4.4
+
+* Update javaversion to 17
